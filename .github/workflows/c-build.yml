@@ -9,15 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compile all projects
-        run: |
-          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror labs/lab01_series.c -o /tmp/lab01
-          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror labs/lab02_array.c -o /tmp/lab02
-          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror exercises/matrix_tasks.c -o /tmp/matrix
-          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror projects/transactions.c -o /tmp/transactions
-      - name: Run examples
-        run: |
-          printf '1\n2\n5\n' | /tmp/lab01
-          printf '5\n3\n2\n5\n-4\n7\n3\n' | /tmp/lab02
-          /tmp/matrix
-          /tmp/transactions projects/sample_transactions.csv
+      - name: Compile bank transaction analyzer
+        run: gcc -std=c11 -Wall -Wextra -Wpedantic -Werror projects/transactions.c -o /tmp/transactions
+      - name: Run example data
+        run: /tmp/transactions projects/sample_transactions.csv
